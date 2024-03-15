@@ -1,0 +1,14 @@
+version: 2
+
+# Giving the model name, then within that specifiying the collumns, and to each column specifying a test
+# Using packages for custom prebuilt tests
+# example use -->  dbt test --select raw_policyholders
+
+
+models:
+  - name: raw_policyholders
+    columns:
+      - name: birthdate
+        tests:
+          - not_null 
+          - valid_birthdate

@@ -1,0 +1,8 @@
+sources:
+  - name: raw_gcp_upload  # A logical name for your source, can be anything relevant.
+    database: river-pillar-416609  # The GCP project ID where your BigQuery dataset is hosted.
+    schema: dbt_cees_bq  # The BigQuery dataset name where your table is.
+    tables:
+      - name: raw_policies  # The name of the table you're referencing.
+      - name: raw_policyholders
+      - name: raw_claims

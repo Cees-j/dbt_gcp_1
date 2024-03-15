@@ -1,0 +1,66 @@
+version: 2
+
+# Giving the model name, then within that specifiying the collumns, and to each column specifying a test
+# Using packages for custom prebuilt tests
+# example use -->  dbt test --select stg_policyholder
+
+
+
+
+
+models:
+  - name: stg_policy  
+    columns:
+      - name: policy_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Auto', 'Home', 'Life', 'Health', 'Travel']
+
+
+
+
+
+
+  - name: stg_policyholder
+    columns:
+      - name: policyholder_id
+        description: "The unique identifier for a policyholder."
+        tests:
+          - unique
+          - not_null
+
+      - name: first_name        # should fail
+        description: "First name of policyholder"
+        tests: 
+          - unique
+
+      - name: birthdate
+        description: "The policyholder's birthdate."
+        tests:
+          - dbt_expectations.expect_column_values_to_not_be_null
+          - valid_birthdate
+
+
+
+      - name: street_number
+        tests:
+         - dbt_expectations.expect_column_to_exist
+      - name: street_name
+        tests:
+         - dbt_expectations.expect_column_to_exist
+      - name: city
+        tests:
+         - dbt_expectations.expect_column_to_exist
+
+
+      - name: cleaned_zip_code        # should error - comparing ints to string 
+        description: "The policyholder's ZIP code after cleaning, expected to be a 5-digit number."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['10001', '10002', '10003', '10004', '10005'] 
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: int64
+
+
