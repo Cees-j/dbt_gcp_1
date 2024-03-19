@@ -39,31 +39,17 @@ models:
     staging:
       +dataset: staging
       +materialized: table
+    raw:
+      +dataset: raw
+      +materialized: table
+    dim:
+      +dataset: dim
+      +materialized: table
+    fact:
+      +dataset: fact
+      +materialized: table
 
 
-
-# models:
-#     stacktonic_example_project:
-#         marts:
-#             core:
-#                 materialized: table
-#                 +dataset: core
-#                 +tags:
-#                     - "core"
-#                     - "daily"
-#             marketing:
-#                 materialized: table
-#                 +dataset: marketing
-#                 +tags:
-#                     - "marketing"
-#                     - "daily"
-#         staging:
-#             google_analytics:
-#                 materialized: view
-#                 +dataset: staging
-#                 +tags:
-#                     - "staging"
-#                     - "daily"
 
 vars: 
   project_name:	'river-pillar-416609'

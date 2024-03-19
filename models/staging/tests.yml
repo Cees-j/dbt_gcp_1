@@ -39,7 +39,7 @@ models:
         description: "The policyholder's birthdate."
         tests:
           - dbt_expectations.expect_column_values_to_not_be_null
-          - valid_birthdate
+          - valid_birthdate # custom test 
 
 
 
@@ -54,6 +54,7 @@ models:
          - dbt_expectations.expect_column_to_exist
 
 
+
       - name: cleaned_zip_code        # should error - comparing ints to string 
         description: "The policyholder's ZIP code after cleaning, expected to be a 5-digit number."
         tests:
@@ -64,3 +65,29 @@ models:
               column_type: int64
 
 
+
+
+  - name: stg_claims
+    description: '{{ doc("source_doc_block") }}'   # doc block
+    columns:
+      - name: policy_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Auto', 'Home', 'Life', 'Health', 'Travel']
+
+
+  - name: stg_claims_2  
+    columns:
+      - name: claim_code
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0  # (Optional)
+              max_value: 10 # (Optional)
+    
+
+seeds:
+  - name: claim_codes
+    description: mapping of claim codes
