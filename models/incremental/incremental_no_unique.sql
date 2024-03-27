@@ -1,0 +1,14 @@
+{{
+    config(
+        materialized='incremental'
+    )
+}}
+
+select * FROM {{ source('raw_data', 'raw_incremental') }}
+
+{% if is_incremental() %}
+
+where
+  updated_at > (select max(updated_at) from {{ this }})
+
+{% endif %}

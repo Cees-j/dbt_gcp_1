@@ -1,0 +1,15 @@
+version 2:
+
+models:
+  - name: fact_claim
+    config:
+      schema: fact
+      materialized: view
+
+    columns:
+      - name: claim_status
+        description: "claim status"
+        tests: 
+          - not_null
+## what is diff between prop and config and test.yml i dont understnad
+## can you just put anything you wna in a yml file?

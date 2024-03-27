@@ -48,6 +48,9 @@ models:
     fact:
       +dataset: fact
       +materialized: table
+    incremental:
+      +dataset: incremental
+      +materialized: table
 
 
 
