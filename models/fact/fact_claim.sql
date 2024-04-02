@@ -30,8 +30,8 @@ select
     c.claim_status,
     c.claim_type,
     c.claim_code,
-    p.policy_id as policy_key,      -- Derived from policy_dimension, for clarity
-    ph.policyholder_id as policyholder_key  -- Derived from policyholder_dimension, for clarity
+    p.policy_id as policy_key,      
+    ph.policyholder_id as policyholder_key  
 from claims c
 left join policy_dimension p on c.policy_id = p.policy_id
 left join policyholder_dimension ph on p.policyholder_id = ph.policyholder_id

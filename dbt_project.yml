@@ -33,14 +33,8 @@ clean-targets:         # directories to be removed by `dbt clean`
   # Config indicated by + and applies to all files under models/example/
 models:
   dbt_gcp_1:
-    example:
-      +schema: dbt_gcp_bq
-      +materialized: view
     staging:
       +dataset: staging
-      +materialized: table
-    raw:
-      +dataset: raw
       +materialized: table
     dim:
       +dataset: dim
