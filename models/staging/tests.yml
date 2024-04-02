@@ -39,7 +39,7 @@ models:
         description: "The policyholder's birthdate."
         tests:
           - dbt_expectations.expect_column_values_to_not_be_null
-          - valid_birthdate # custom test 
+          - valid_birthdate # custom test   
 
 
 

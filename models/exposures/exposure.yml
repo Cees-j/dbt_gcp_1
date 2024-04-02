@@ -1,0 +1,13 @@
+version: 2
+
+exposures:
+  - name: complaint_dashboard
+    type: dashboard
+    owner:
+      name: cees
+      email: ceesjdu@gmail.com
+    depends_on:
+      - ref('fact_complaint')
+    description: Monthly sales dashboard used by the executive team.
+    url: https://looker.company.com/dashboards/123
+    maturity: high

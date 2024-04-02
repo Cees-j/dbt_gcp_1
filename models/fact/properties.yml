@@ -11,5 +11,3 @@ models:
         description: "claim status"
         tests: 
           - not_null
-## what is diff between prop and config and test.yml i dont understnad
-## can you just put anything you wna in a yml file?
