@@ -1,10 +1,8 @@
 version: 2
 
-# Giving the model name, then within that specifiying the collumns, and to each column specifying a test
+# Giving the model name, then within that specifiying the collmns, and to each column specifying a test
 # Using packages for custom prebuilt tests
 # example use -->  dbt test --select stg_policyholder
-
-
 
 
 
@@ -16,7 +14,6 @@ models:
           - not_null
           - accepted_values:
               values: ['Auto', 'Home', 'Life', 'Health', 'Travel']
-
 
 
 
@@ -67,6 +64,7 @@ models:
 
 
 
+
   - name: stg_claims
     description: '{{ doc("source_doc_block") }}'   # doc block
     columns:
@@ -75,6 +73,7 @@ models:
           - not_null
           - accepted_values:
               values: ['Auto', 'Home', 'Life', 'Health', 'Travel']
+
 
 
   - name: stg_claims_2  
@@ -87,6 +86,7 @@ models:
               min_value: 0  # (Optional)
               max_value: 10 # (Optional)
     
+
 
 seeds:
   - name: claim_codes
