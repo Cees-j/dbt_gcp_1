@@ -5,7 +5,7 @@ with claims as (
         claim_status,
         claim_type,
         claim_code,
-        policy_id,           -- Needed for joining with policy_dimension
+        policy_id,          
     from {{ ref('stg_claims_2') }}
 ),
 
@@ -13,14 +13,12 @@ policy_dimension as (
     select
         policy_id,
         policyholder_id
-        -- Other attributes you need from policy_dimension, excluding policy_id in the final select
     from {{ ref('dim_policy') }}
 ),
 
 policyholder_dimension as (
     select
         policyholder_id,
-        -- Other attributes you need from policyholder_dimension, excluding policyholder_id in the final select
     from {{ ref('dim_policyholder') }}
 )
 
